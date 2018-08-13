@@ -7,7 +7,7 @@ SPDX-License-Identifier: EPL-2.0
 Copyright Contributors to the Zowe Project.
 # zLUX grid library
 Adding the library to your package:
-`npm install "git+ssh://git@github.com:gizafoundation/zlux-grid.git" --save-dev`
+`npm install "git+ssh://git@github.com:zowe/zlux-grid.git" --save-dev`
 
 Imports:  
 Module: `import { ZluxGridModule } from '@zlux/grid'`  
