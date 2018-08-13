@@ -1,0 +1,116 @@
+
+
+/*
+  This program and the accompanying materials are
+  made available under the terms of the Eclipse Public License v2.0 which accompanies
+  this distribution, and is available at https://www.eclipse.org/legal/epl-v20.html
+  
+  SPDX-License-Identifier: EPL-2.0
+  
+  Copyright Contributors to the Zowe Project.
+*/
+
+:host >>> th {
+  text-align: center !important;
+}
+
+:host >>> .right-align {
+  text-align: right;
+}
+
+:host >>> .column {
+  padding-left: 2 !important;
+  display: table-cell !important;
+  height: 100% !important;
+  overflow: hidden;
+}
+
+:host >>> .checkbox-column {
+  width: 31px !important;
+}
+
+:host {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: white;
+}
+
+:host.without-vertical-scroll > p-table >>> .ui-table-scrollable-body {
+  overflow-y: hidden;
+}
+
+:host.auto-layout > p-table >>> .ui-table-wrapper {
+  overflow: unset;
+}
+
+:host > p-table {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+:host > p-table >>> .ui-table {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+:host > p-table >>> .ui-table-scrollable-wrapper,
+:host > p-table >>> .ui-table-scrollable-wrapper > div {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+:host > p-table >>> .ui-table-scrollable-body {
+  flex: 1 1 auto;
+  max-height: none !important;
+}
+
+:host > p-table >>> .ui-table-scrollable-header {
+  flex: none;
+}
+
+:host > p-table >>> .ui-table > p-paginator {
+  border: 1px solid #D5D5D5;
+}
+
+:host > p-table >>> .ui-widget-header th {
+  text-overflow: ellipsis;
+  padding-right: 20px;
+  position: relative;
+}
+
+:host > p-table >>> .ui-table tbody > tr:hover {
+  background-color: #DEEEF7;
+}
+
+:host > p-table >>> .ui-sortable-column-icon {
+  position: absolute;
+  top: calc(50% - 7px);
+  right: 0px;
+}
+
+.column-tooltip {
+  max-width: 200px;
+  font-size: 12px;
+}
+
+/*correction for double event on row selection by checkbox*/
+.selection-checkbox >>> .ui-chkbox {
+  pointer-events: none;
+}
+
+
+/*
+  This program and the accompanying materials are
+  made available under the terms of the Eclipse Public License v2.0 which accompanies
+  this distribution, and is available at https://www.eclipse.org/legal/epl-v20.html
+  
+  SPDX-License-Identifier: EPL-2.0
+  
+  Copyright Contributors to the Zowe Project.
+*/
+

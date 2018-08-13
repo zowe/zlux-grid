@@ -1,0 +1,44 @@
+{
+  "name": "@zlux/grid",
+  "version": "0.0.5",
+  "scripts": {
+    "start": "webpack --progress --colors --watch",
+    "build": "webpack --progress --colors",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~6.0.9",
+    "@angular/common": "~6.0.9",
+    "@angular/compiler": "~6.0.9",
+    "@angular/core": "~6.0.9",
+    "@angular/forms": "~6.0.9",
+    "@angular/platform-browser": "~6.0.9",
+    "@angular/router": "~6.0.9",
+    "primeng": "^5.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.96",
+    "@zlux/widgets": "git+ssh://git@github.com:gizafoundation/zlux-widgets.git",
+    "angular2-template-loader": "^0.6.2",
+    "codelyzer": "~4.4.2",
+    "css-loader": "^0.28.9",
+    "css-to-string-loader": "^0.1.3",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^0.11.2",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.28.0",
+    "null-loader": "^0.1.1",
+    "raw-loader": "^0.5.1",
+    "rxjs": "~6.2.2",
+    "rxjs-compat": "~6.2.2",
+    "style-loader": "^0.18.2",
+    "ts-loader": "^2.2.0",
+    "ts-node": "~3.0.4",
+    "tslint": "~5.3.2",
+    "typescript": "~2.7.2",
+    "url-loader": "^1.0.1",
+    "webpack": "^3.8.1",
+    "zone.js": "~0.8.26"
+  }
+}

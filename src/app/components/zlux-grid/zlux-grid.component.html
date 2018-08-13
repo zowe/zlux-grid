@@ -1,0 +1,124 @@
+
+
+<!-- 
+  This program and the accompanying materials are
+  made available under the terms of the Eclipse Public License v2.0 which accompanies
+  this distribution, and is available at https://www.eclipse.org/legal/epl-v20.html
+  
+  SPDX-License-Identifier: EPL-2.0
+  
+  Copyright Contributors to the Zowe Project.
+-->
+
+ <p-table [value]="formattedRows"
+   [paginator]="paginator"
+   [rows]="rowsPerPage"
+   [resizableColumns]="resizableColumns"
+   [scrollable]="!autoLayout && (scrollableVertical || scrollableHorizontal)"
+   [style]="!autoLayout && scrollableHorizontal?{width:'100%'}:undefined"
+   [scrollHeight]="!autoLayout && scrollableVertical?'100%':undefined"
+   [autoLayout]="autoLayout"
+   [selectionMode]="selectionMode"
+   (selectionChange)="onSelectionChanged($event)"
+   [sortField]="sortField"
+   [sortOrder]="sortOrder"
+   (onSort)="onSort($event)"
+   (onEditComplete)="onEditComplete(event)"
+ >
+  <ng-template pTemplate="caption" *ngIf="header !== undefined">
+    {{header}}
+  </ng-template>
+  <ng-template pTemplate="colgroup" *ngIf="!autoLayout">
+    <colgroup>
+        <col *ngIf="selectionMode && selectionWay == 'checkbox'"
+          [ngStyle]="{'width':'2em'}">
+        <col *ngFor="let column of columns"
+          [ngStyle]="{'width':column.colMinWidth}">
+    </colgroup>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngIf="selectionMode && selectionWay == 'checkbox'">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th *ngFor="let column of columns"
+        [class]="column.styleClass"
+        (mouseenter)="onHeaderHover($event,column)"
+        class="column"
+        pResizableColumn
+        [pResizableColumnDisabled]="!resizableColumns"
+        [pSortableColumn]="column.field"
+        [pSortableColumnDisabled]="column.sortable != null ? !column.sortable : false"
+        zluxFlyover
+        [zluxFlyoverDisabled]="!column.columnDescription"
+        [flyover]="descriptionFlyover">
+        {{column.header}}
+        <p-sortIcon [field]="column.field"
+          *ngIf="column.sortable != null ? column.sortable : true">
+        </p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-row let-ri="rowIndex">
+    <tr [pSelectableRow]="row" [pSelectableRowIndex]="ri">
+      <td *ngIf="selectionMode && selectionWay == 'checkbox'"
+        class="selection-checkbox">
+        <p-tableCheckbox [value]="row"></p-tableCheckbox>
+      </td>
+      <td *ngFor="let column of columns"
+        [ngClass]="{'ui-resizable-column':resizableColumns}"
+        [class]="column.styleClass"
+        class="column"
+        pEditableColumn
+        [pEditableColumnDisabled]="!editable || (column.displayHints && column.displayHints.isCustomTemplating)">
+        <ng-container *ngIf="column.displayHints && column.displayHints.isCustomTemplating;else standard">
+          <ng-container *ngTemplateOutlet="customTemplates[column.field]; context: { rowData: row,
+                                                                                     rowIndex: ri,
+                                                                                     colField: column.field }">
+          </ng-container>
+        </ng-container>
+        <ng-template #standard>
+          <ng-container *ngIf="editable;else notEditable">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                  <input type="text" [(ngModel)]="row[column.field]">
+              </ng-template>
+              <ng-template pTemplate="output">
+                  {{row[column.field]}}
+              </ng-template>
+            </p-cellEditor>
+          </ng-container>
+          <ng-template #notEditable>
+            {{row[column.field]}}
+          </ng-template>
+        </ng-template>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td [attr.colspan]="(columns?columns.length:0)+(selectionMode && selectionWay == 'checkbox'?1:0)">
+        {{emptyMessage}}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<zlux-flyover #descriptionFlyover>
+  <div class="column-tooltip">
+    <ng-container *ngIf="onHoverActiveColumn.description">
+      {{onHoverActiveColumn.description}}
+    </ng-container>
+  </div>
+</zlux-flyover>
+
+
+<!-- 
+  This program and the accompanying materials are
+  made available under the terms of the Eclipse Public License v2.0 which accompanies
+  this distribution, and is available at https://www.eclipse.org/legal/epl-v20.html
+  
+  SPDX-License-Identifier: EPL-2.0
+  
+  Copyright Contributors to the Zowe Project.
+-->
+
