@@ -23,7 +23,7 @@
    [sortField]="sortField"
    [sortOrder]="sortOrder"
    (onSort)="onSort($event)"
-   (onEditComplete)="onEditComplete(event)"
+   (onEditComplete)="onEditComplete($event)"
  >
   <ng-template pTemplate="caption" *ngIf="header !== undefined">
     {{header}}

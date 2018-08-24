@@ -1,4 +1,5 @@
 
+
 /*
   This program and the accompanying materials are
   made available under the terms of the Eclipse Public License v2.0 which accompanies
@@ -8,6 +9,7 @@
   
   Copyright Contributors to the Zowe Project.
 */
+
 import { PipeTransform } from '@angular/core';
 import { Column } from './zlux-grid.interfaces';
 export declare class ZluxTableMetadataToColumnsPipe implements PipeTransform {
@@ -21,6 +23,7 @@ export declare class ZluxTableColumnsCustomSortPipe implements PipeTransform {
     transform(value: Array<Column>): Array<Column>;
 }
 
+
 /*
   This program and the accompanying materials are
   made available under the terms of the Eclipse Public License v2.0 which accompanies
@@ -30,3 +33,4 @@ export declare class ZluxTableColumnsCustomSortPipe implements PipeTransform {
   
   Copyright Contributors to the Zowe Project.
 */
+

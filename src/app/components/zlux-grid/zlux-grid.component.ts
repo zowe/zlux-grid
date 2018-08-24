@@ -62,11 +62,11 @@ export class ZluxGridComponent implements OnChanges, AfterViewChecked {
     }
   }
 
-  private rowsPerPage = 15;
+  rowsPerPage = 15;
   //TODO: SPEC-647 this variable is used in calculations of rowPerPage
   //in case if there are no rows in the table
   private fallbackRowHeigth = 27;
-  private formattedRows: Array<any> = [];
+  formattedRows: Array<any> = [];
   private needsRowCountUpdate = false;
   private outsideChanging: boolean = false;
   public onHoverActiveColumn: any= {};
