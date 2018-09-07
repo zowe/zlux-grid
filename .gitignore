@@ -10,7 +10,7 @@
 # compiled output
 /web
 /tmp
-/out-tsc
+/out_tsc
 
 # dependencies
 /node_modules

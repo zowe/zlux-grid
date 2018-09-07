@@ -39,9 +39,9 @@ export declare class ZluxGridComponent implements OnChanges, AfterViewChecked {
     sortChange: EventEmitter<any>;
     onEditCompleted: EventEmitter<any>;
     wrapperHeight: number;
-    private rowsPerPage;
+    rowsPerPage: number;
     private fallbackRowHeigth;
-    private formattedRows;
+    formattedRows: Array<any>;
     private needsRowCountUpdate;
     private outsideChanging;
     onHoverActiveColumn: any;
