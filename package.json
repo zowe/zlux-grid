@@ -4,6 +4,7 @@
   "scripts": {
     "start": "webpack --progress --colors --watch",
     "build": "webpack --progress --colors",
+    "metadata": "ngc -p tsconfig.ngx-i18n.json",
     "lint": "ng lint"
   },
   "private": true,
@@ -21,7 +22,7 @@
     "@angular/compiler": "~6.0.9",
     "@angular/compiler-cli": "~6.0.9",
     "@types/node": "^6.0.96",
-    "@zlux/widgets": "git+ssh://git@github.com:zowe/zlux-widgets.git",
+    "@zlux/widgets": "git+ssh://git@github.com:gizafoundation/zlux-widgets.git#upgrade-to-ng6-with-metadata",
     "angular2-template-loader": "^0.6.2",
     "codelyzer": "~4.4.2",
     "copy-webpack-plugin": "^4.5.2",
