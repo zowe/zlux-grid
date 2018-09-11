@@ -4,6 +4,7 @@
   "scripts": {
     "start": "webpack --progress --colors --watch",
     "build": "webpack --progress --colors",
+    "metadata": "ngc -p tsconfig.ngx-i18n.json",
     "lint": "ng lint"
   },
   "private": true,

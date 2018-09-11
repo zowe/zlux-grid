@@ -1,15 +1,16 @@
 {
   "compileOnSave": false,
+  "include": [
+    "src/app/*"
+  ],
   "compilerOptions": {
     "outDir": "./out_tsc",
     "baseUrl": "./src/app",
-    "sourceMap": true,
-    "declaration": true,
-    "declarationDir": ".",
     "module": "amd",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "skipLibCheck": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -18,13 +19,14 @@
       "es2016",
       "dom"
     ],
-    "paths": {}
+    "paths": {
+      "@angular/*": ["../../node_modules/@angular/*"]
+    }
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "angularCompilerOptions": {
+    "annotationsAs": "decorators",    
+    "skipLibCheck": true,
+    "skipMetadataEmit" : false,
+    "enableResourceInlining": true
+  }
 }
