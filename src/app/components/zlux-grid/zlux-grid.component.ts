@@ -43,6 +43,8 @@ export class ZluxGridComponent implements OnChanges, AfterViewChecked {
   @Input() selectionWay: 'rowclick' | 'checkbox' = 'rowclick';
   @Input() paginator: boolean;
   @Input() customPaginator: boolean;
+  @Input() dynamicPageSize: boolean;
+  @Input() rowsPerPage = 15;
   @Input() resizableColumns: boolean;
   @Input() scrollableHorizontal: boolean;
   @Input() scrollableVertical: boolean;
@@ -57,12 +59,11 @@ export class ZluxGridComponent implements OnChanges, AfterViewChecked {
 
   @Input()
   set wrapperHeight(value: number) {
-    if (value) {
+    if (this.dynamicPageSize && value) {
       this.updateRowsPerPage(value);
     }
   }
 
-  rowsPerPage = 15;
   //TODO: SPEC-647 this variable is used in calculations of rowPerPage
   //in case if there are no rows in the table
   private fallbackRowHeigth = 27;
@@ -80,10 +81,12 @@ export class ZluxGridComponent implements OnChanges, AfterViewChecked {
         // Update the row data
         if (this.rows) {
           if (this.rows.length > this.rowsPerPage) {
-            this.rows = this.rows.slice(0, this.rowsPerPage);
+            if (this.dynamicPageSize) {
+              this.rows = this.rows.slice(0, this.rowsPerPage);
+            }
           }
           this.formattedRows = this.formatDataRows(this.rows, this.columns);
-          if (this.paginator || this.customPaginator)
+          if (this.dynamicPageSize)
             this.needsRowCountUpdate = true;
         }
       }
@@ -107,7 +110,7 @@ export class ZluxGridComponent implements OnChanges, AfterViewChecked {
   // XXX: this is a very brittle hackery. If there exists any better way of doing something with a similar
   //      result - then this code should be refactored.
   public updateRowsPerPage(bodyHeight?: number): void {
-    if (!this.scrollableVertical && (this.paginator || this.customPaginator)) {
+    if (!this.scrollableVertical && (this.dynamicPageSize)) {
       const someRow = this.elemRef.nativeElement.querySelector('table tbody.ui-table-tbody tr');
 
       //TODO: SPEC-647
@@ -119,7 +122,7 @@ export class ZluxGridComponent implements OnChanges, AfterViewChecked {
       if (rowsPerPage !== this.rowsPerPage) {
         this.rowsPerPage = rowsPerPage;
         this.rowsPerPageChange.emit(this.rowsPerPage);
-        if (this.rows != null && (this.paginator || this.customPaginator)) {
+        if (this.rows != null && (this.dynamicPageSize)) {
           this.rows = this.rows.slice(0); // to update the table
         }
       }

@@ -27,6 +27,8 @@ export declare class ZluxGridComponent implements OnChanges, AfterViewChecked {
     selectionWay: 'rowclick' | 'checkbox';
     paginator: boolean;
     customPaginator: boolean;
+    dynamicPageSize: boolean;
+    rowsPerPage: number;
     resizableColumns: boolean;
     scrollableHorizontal: boolean;
     scrollableVertical: boolean;
@@ -39,7 +41,6 @@ export declare class ZluxGridComponent implements OnChanges, AfterViewChecked {
     sortChange: EventEmitter<any>;
     onEditCompleted: EventEmitter<any>;
     wrapperHeight: number;
-    rowsPerPage: number;
     private fallbackRowHeigth;
     formattedRows: Array<any>;
     private needsRowCountUpdate;
@@ -70,4 +71,3 @@ export declare class ZluxGridModule {
   
   Copyright Contributors to the Zowe Project.
 */
-
