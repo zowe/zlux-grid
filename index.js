@@ -4195,6 +4195,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
             this.rows = [];
             this.columns = [];
             this.selectionWay = 'rowclick';
+            this.rowsPerPage = 15;
             this.sortField = null;
             this.sortOrder = 1;
             this.autoLayout = false;
@@ -4202,7 +4203,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
             this.rowsPerPageChange = new core_1.EventEmitter();
             this.sortChange = new core_1.EventEmitter();
             this.onEditCompleted = new core_1.EventEmitter();
-            this.rowsPerPage = 15;
             //TODO: SPEC-647 this variable is used in calculations of rowPerPage
             //in case if there are no rows in the table
             this.fallbackRowHeigth = 27;
@@ -4213,7 +4213,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
         }
         Object.defineProperty(ZluxGridComponent.prototype, "wrapperHeight", {
             set: function (value) {
-                if (value) {
+                if (this.dynamicPageSize && value) {
                     this.updateRowsPerPage(value);
                 }
             },
@@ -4226,10 +4226,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
                     // Update the row data
                     if (this.rows) {
                         if (this.rows.length > this.rowsPerPage) {
-                            this.rows = this.rows.slice(0, this.rowsPerPage);
+                            if (this.dynamicPageSize) {
+                                this.rows = this.rows.slice(0, this.rowsPerPage);
+                            }
                         }
                         this.formattedRows = this.formatDataRows(this.rows, this.columns);
-                        if (this.paginator || this.customPaginator)
+                        if (this.dynamicPageSize)
                             this.needsRowCountUpdate = true;
                     }
                 }
@@ -4251,7 +4253,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
         // XXX: this is a very brittle hackery. If there exists any better way of doing something with a similar
         //      result - then this code should be refactored.
         ZluxGridComponent.prototype.updateRowsPerPage = function (bodyHeight) {
-            if (!this.scrollableVertical && (this.paginator || this.customPaginator)) {
+            if (!this.scrollableVertical && (this.dynamicPageSize)) {
                 var someRow = this.elemRef.nativeElement.querySelector('table tbody.ui-table-tbody tr');
                 //TODO: SPEC-647
                 var height = someRow.getBoundingClientRect().height + 1;
@@ -4261,7 +4263,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
                 if (rowsPerPage !== this.rowsPerPage) {
                     this.rowsPerPage = rowsPerPage;
                     this.rowsPerPageChange.emit(this.rowsPerPage);
-                    if (this.rows != null && (this.paginator || this.customPaginator)) {
+                    if (this.rows != null && (this.dynamicPageSize)) {
                         this.rows = this.rows.slice(0); // to update the table
                     }
                 }
@@ -4362,6 +4364,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
             core_1.Input(),
             __metadata("design:type", Boolean)
         ], ZluxGridComponent.prototype, "customPaginator", void 0);
+        __decorate([
+            core_1.Input(),
+            __metadata("design:type", Boolean)
+        ], ZluxGridComponent.prototype, "dynamicPageSize", void 0);
+        __decorate([
+            core_1.Input(),
+            __metadata("design:type", Object)
+        ], ZluxGridComponent.prototype, "rowsPerPage", void 0);
         __decorate([
             core_1.Input(),
             __metadata("design:type", Boolean)
@@ -36540,4 +36550,3 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
   
   Copyright Contributors to the Zowe Project.
 */
-
