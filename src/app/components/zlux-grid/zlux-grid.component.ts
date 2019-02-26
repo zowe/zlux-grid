@@ -30,7 +30,7 @@ import { ZluxFlyoverModule } from '@zlux/widgets';
   selector: 'zlux-grid',
   templateUrl: 'zlux-grid.component.html',
   styleUrls: ['zlux-grid.component.css'],
-  host: {'[class.without-vertical-scroll]':'customPaginator || paginator',
+  host: {'[class.without-vertical-scroll]':'customPaginator || !scrollableVertical',
          '[class.auto-layout]':'autoLayout'}
 })
 export class ZluxGridComponent implements OnChanges, AfterViewChecked {
